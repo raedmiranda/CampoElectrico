@@ -34,10 +34,8 @@
             <div class="form-group">
                 <label class="col-form-label">Carga fuente</label>
                 <div class="input-group">
-                    <p class="form-control"  aria-describedby="constK">
-                        <b>9 x 10<sup>9</sup></b>
-                    </p>
-                    <span class="input-group-addon" id="basic-addon2">N m<sup>2</sup>C<sup>-2</sup></span>
+                    <input type="number" value="" class="form-control" id="Q" aria-describedby="helpR" placeholder="Ingrese carga" />
+                    <span class="input-group-addon" id="basic-addon2"> C </span>
 
                 </div>
                 <small id="constK" class="form-text text-muted">Carga punto.</small>
@@ -47,7 +45,7 @@
                 <label class="col-form-label">Distancia desde la carga al punto P</label>
                 <div class="input-group">
                     <input type="number" value="" class="form-control" id="r" aria-describedby="helpR" placeholder="Ingrese distancia"/>
-                    <span class="input-group-addon" id="basic-addon2">m</span>
+                    <span class="input-group-addon" id="basic-addon2"> m </span>
 
                 </div>
                 <small id="helpR" class="form-text text-muted">En metros.</small>
@@ -56,11 +54,8 @@
             <div class="form-group">
                 <label class="col-form-label">Vector unitario</label>
                 <div class="input-group">
-                    <p class="form-control" aria-describedby="constK">
-                        <b>9 x 10<sup>9</sup></b>
-                    </p>
+                    <input type="number" value="" class="form-control" id="u" aria-describedby="constK" placeholder="Ingrese vector unitario" />
                     <span class="input-group-addon" id="basic-addon2"> · </span>
-
                 </div>
                 <small id="constK" class="form-text text-muted">Vector unitario en la dirección radial.</small>
             </div>
@@ -132,7 +127,7 @@
                     Check me out
                 </label>
             </div>*@
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" id="submitForm">Submit</button>
         </form>
 
         <br /><br />
@@ -140,7 +135,7 @@
             <label class="col-form-label">Campo eléctrico resultante</label>
             <div class="input-group">
                 <p class="form-control" aria-describedby="constK">
-                    <b>9 x 10<sup>9</sup></b>
+                    <b>@Double.Parse(@ViewBag.resultado)</b>
                 </p>
                 <span class="input-group-addon" id="basic-addon2"> N / C </span>
 
@@ -151,5 +146,21 @@
 
     </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+        $('#submitForm').click(function () {
+            var _idQ = $(this).find('#Q').val();
+            var _idU = $(this).find('#u').val();
+            var _idR = $(this).find('#r').val();
+            var _idK = 9000000000;
+            //alert(_idArticulo);
+            $.post('@Url.Action("Index")', {
+                k: _idK,
+                q: _idQ,
+                r: _idR,
+                u: _idU,
+            })
+                
+        });
+    </script>
 </body>
 </html>
