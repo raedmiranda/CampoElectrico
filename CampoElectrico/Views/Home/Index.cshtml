@@ -131,11 +131,26 @@
         </form>
 
         <br /><br />
+        @if (@ViewBag.resultado != null)
+        {
+            <div class="form-group">
+                <label class="col-form-label">Campo eléctrico resultante</label>
+                <div class="input-group">
+                    <p class="form-control" aria-describedby="constK">
+                        <b>@Double.Parse(@ViewBag.resultado)</b>
+                        <b id="resultado"></b>
+                    </p>
+                    <span class="input-group-addon" id="basic-addon2"> N / C </span>
+
+                </div>
+                <small id="constK" class="form-text text-muted">Resultado.</small>
+            </div>
+        }
         <div class="form-group">
             <label class="col-form-label">Campo eléctrico resultante</label>
             <div class="input-group">
                 <p class="form-control" aria-describedby="constK">
-                    <b>@Double.Parse(@ViewBag.resultado)</b>
+                    <b id="resultado"></b>
                 </p>
                 <span class="input-group-addon" id="basic-addon2"> N / C </span>
 
@@ -146,19 +161,31 @@
 
     </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
     <script>
+        var _idQ = $('#Q').val();
+        var _idU = $('#u').val();
+        var _idR = $('#r').val();
+        var _idK = 9000000000;
+        var a = _idK * (_idQ / (_idR * _idR)) * _idU;
+        $('#resultado').val() = a;
+
         $('#submitForm').click(function () {
-            var _idQ = $(this).find('#Q').val();
-            var _idU = $(this).find('#u').val();
-            var _idR = $(this).find('#r').val();
+            var _idQ = $('#Q').val();
+            var _idU = $('#u').val();
+            var _idR = $('#r').val();
             var _idK = 9000000000;
             //alert(_idArticulo);
-            $.post('@Url.Action("Index")', {
+            var a = _idK * (_idQ / (_idR * _idR)) * _idU;
+            $('#resultado').val() = a;
+            @*$.post('@Url.Action("Index")', {
                 k: _idK,
                 q: _idQ,
                 r: _idR,
                 u: _idU,
-            })
+            })*@
                 
         });
     </script>
