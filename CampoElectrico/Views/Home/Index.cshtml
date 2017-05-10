@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="row">
-        <form class="col-md-12">
+    
             <div class="form-group">
                 <label class="col-form-label">Constante electrostàtica</label>
                 <div class="input-group">
@@ -127,25 +127,9 @@
                     Check me out
                 </label>
             </div>*@
-            <button type="submit" class="btn btn-primary" id="submitForm">Submit</button>
-        </form>
-
+            <button class="btn btn-primary" id="submitForm">Submit</button>
         <br /><br />
-        @if (@ViewBag.resultado != null)
-        {
-            <div class="form-group">
-                <label class="col-form-label">Campo eléctrico resultante</label>
-                <div class="input-group">
-                    <p class="form-control" aria-describedby="constK">
-                        <b>@Double.Parse(@ViewBag.resultado)</b>
-                        <b id="resultado"></b>
-                    </p>
-                    <span class="input-group-addon" id="basic-addon2"> N / C </span>
 
-                </div>
-                <small id="constK" class="form-text text-muted">Resultado.</small>
-            </div>
-        }
         <div class="form-group">
             <label class="col-form-label">Campo eléctrico resultante</label>
             <div class="input-group">
@@ -165,28 +149,29 @@
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
     <script>
-        var _idQ = $('#Q').val();
-        var _idU = $('#u').val();
-        var _idR = $('#r').val();
-        var _idK = 9000000000;
-        var a = _idK * (_idQ / (_idR * _idR)) * _idU;
-        $('#resultado').val() = a;
+        $(document).ready(function () {
+            console.log("ready");
+            
 
-        $('#submitForm').click(function () {
-            var _idQ = $('#Q').val();
-            var _idU = $('#u').val();
-            var _idR = $('#r').val();
-            var _idK = 9000000000;
-            //alert(_idArticulo);
-            var a = _idK * (_idQ / (_idR * _idR)) * _idU;
-            $('#resultado').val() = a;
-            @*$.post('@Url.Action("Index")', {
-                k: _idK,
-                q: _idQ,
-                r: _idR,
-                u: _idU,
-            })*@
+            $('#submitForm').on("click",function () {
+                var _idQ = $('#Q').val();
+                var _idU = $('#u').val();
+                var _idR = $('#r').val();
+                var _idK = 9000000000;
                 
+                alert(_idR);
+
+                var a = _idK * (_idQ / (_idR * _idR)) * _idU;
+
+               $('#resultado').text(a);
+
+                @*$.post('@Url.Action("Index")', {
+                    k: _idK,
+                    q: _idQ,
+                    r: _idR,
+                    u: _idU,
+                }) *@
+            });
         });
     </script>
 </body>
