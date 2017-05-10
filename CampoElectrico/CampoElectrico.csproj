@@ -102,6 +102,7 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\CampoElectrico - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\CampoElectrico - Web Deploy.pubxml" />
     <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
