@@ -36,7 +36,7 @@
                 <div class="input-group">
                     <input type="number" value="" class="form-control" id="Q" aria-describedby="helpR" placeholder="Ingrese carga" />
                     <span class="input-group-addon" id="basic-addon2">
-                        <select class="" id="r-unidad">
+                        <select class="" id="q-unidad">
                             <option selected value="1">C</option>
                             <option value="0.001">mC</option>
                             <option value="0.000001">uC</option>
@@ -108,10 +108,11 @@
                 var _idK = 9000000000;
 
                 var r_u = $('#r-unidad option:selected').val();
+                var q_u = $('#q-unidad option:selected').val();
 
                 //alert(x * _idR);
 
-                var a = _idK * (_idQ / ((_idR * r_u) * (_idR * r_u))) * _idU;
+                var a = _idK * ((_idQ * q_u) / ((_idR * r_u) * (_idR * r_u))) * _idU;
 
                $('#resultado').text(a);
 
