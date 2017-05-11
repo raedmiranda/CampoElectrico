@@ -35,8 +35,15 @@
                 <label class="col-form-label">Carga fuente</label>
                 <div class="input-group">
                     <input type="number" value="" class="form-control" id="Q" aria-describedby="helpR" placeholder="Ingrese carga" />
-                    <span class="input-group-addon" id="basic-addon2"> C </span>
-
+                    <span class="input-group-addon" id="basic-addon2">
+                        <select class="" id="r-unidad">
+                            <option selected value="1">C</option>
+                            <option value="0.001">mC</option>
+                            <option value="0.000001">uC</option>
+                            <option value="0.000000001">nC</option>
+                            <option value="0.000000000001">pC</option>
+                        </select>
+                    </span>
                 </div>
                 <small id="constK" class="form-text text-muted">Carga punto.</small>
             </div>
@@ -45,8 +52,16 @@
                 <label class="col-form-label">Distancia desde la carga al punto P</label>
                 <div class="input-group">
                     <input type="number" value="" class="form-control" id="r" aria-describedby="helpR" placeholder="Ingrese distancia"/>
-                    <span class="input-group-addon" id="basic-addon2"> m </span>
-
+                    <span class="input-group-addon" id="basic-addon2">
+                        <select class="" id="r-unidad">
+                            <option value="10">dam</option>
+                            <option selected value="1">m</option>
+                            <option value="0.1">dm</option>
+                            <option value="0.01">cm</option>
+                            <option value="0.001">mm</option>
+                            <option value="0.000001">um</option>
+                        </select>
+                    </span>
                 </div>
                 <small id="helpR" class="form-text text-muted">En metros.</small>
             </div>
@@ -60,73 +75,6 @@
                 <small id="constK" class="form-text text-muted">Vector unitario en la dirección radial.</small>
             </div>
 
-            
-
-            @*<div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <div class="form-group">
-                <label for="exampleSelect1">Example select</label>
-                <select class="form-control" id="exampleSelect1">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="exampleSelect2">Example multiple select</label>
-                <select multiple class="form-control" id="exampleSelect2">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="exampleTextarea">Example textarea</label>
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputFile">File input</label>
-                <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-                <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
-            </div>
-            <fieldset class="form-group">
-                <legend>Radio buttons</legend>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                        Option one is this and that&mdash;be sure to include why it's great
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
-                        Option two can be something else and selecting it will deselect option one
-                    </label>
-                </div>
-                <div class="form-check disabled">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
-                        Option three is disabled
-                    </label>
-                </div>
-            </fieldset>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input">
-                    Check me out
-                </label>
-            </div>*@
             <button class="btn btn-primary" id="submitForm">Submit</button>
         <br /><br />
 
@@ -158,10 +106,12 @@
                 var _idU = $('#u').val();
                 var _idR = $('#r').val();
                 var _idK = 9000000000;
-                
-                alert(_idR);
 
-                var a = _idK * (_idQ / (_idR * _idR)) * _idU;
+                var r_u = $('#r-unidad option:selected').val();
+
+                //alert(x * _idR);
+
+                var a = _idK * (_idQ / ((_idR * r_u) * (_idR * r_u))) * _idU;
 
                $('#resultado').text(a);
 
